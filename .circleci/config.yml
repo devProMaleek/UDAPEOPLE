@@ -204,7 +204,6 @@ jobs:
           paths: [project/backend]
       - destroy-environment:
           workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
-  
 
 workflows:
   my-workflow:

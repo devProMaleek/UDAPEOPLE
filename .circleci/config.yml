@@ -269,7 +269,7 @@ jobs:
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
-      # Here's where you will add some code to rollback on failure 
+      # Here's where you will add some code to rollback on failure
       - destroy-environment:
           workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations:
@@ -282,7 +282,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - '18:4f:29:2e:0f:7c:61:39:1f:9c:0a:ba:3b:f0:86:17'
+            - "18:4f:29:2e:0f:7c:61:39:1f:9c:0a:ba:3b:f0:86:17"
       - run:
           name: Install dependencies
           command: |
@@ -291,7 +291,7 @@ jobs:
           at: ~/
       - restore_cache:
           keys: [backend-build]
-      
+
       - run:
           name: Package backend
           command: |
@@ -302,7 +302,7 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             mkdir -p ~/project/.circleci/ansible/roles/deploy/files/
             mv artifact.tar.gz .circleci/ansible/roles/deploy/files/artifact.tar.gz
-      
+
       - run:
           name: Deploy backend
           command: |
@@ -319,7 +319,7 @@ jobs:
 
   smoke-tests:
     docker:
-      # Lightweight Docker image 
+      # Lightweight Docker image
       - image: python:3.7-alpine3.16
     steps:
       # Checkout code from git
@@ -382,7 +382,7 @@ workflows:
           requires: [run-migrations]
       - deploy-backend:
           requires: [run-migrations]
-      -  smoke-tests:
+      - smoke-tests:
           requires: [deploy-frontend, deploy-backend]
       # - cloudfront-update:
       #     requires: [smoke-tests]

@@ -1,10 +1,11 @@
 ---
-- name: "configuration play."
+
+- name: "configuration play." 
   hosts: web
   user: ubuntu
   become: true
   become_method: sudo
-  become_user: root
+  become_user: root  
   gather_facts: false
   vars:
     - ansible_python_interpreter: /usr/bin/python3
@@ -26,7 +27,7 @@
   environment:
     - NODE_ENV: production
     - ENVIRONMENT: production
-    - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
+    - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"  
     # Add more env vars here
     - TYPEORM_ENTITIES: "{{ lookup('env', 'TYPEORM_ENTITIES')}}"
     - TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST')}}"
